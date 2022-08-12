@@ -13,7 +13,7 @@ const RouteTableComponent = () => {
   const { routes } = useSelector(commonState);
 
   return (
-    <div>
+    <div className="table">
       {routes?.map((route, index) => (<RouteComponent key={`index ${index}`} route={route} />))}
       <CreateRouteComponent />
     </div>

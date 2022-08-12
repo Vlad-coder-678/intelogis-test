@@ -2,6 +2,7 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useSelector } from "react-redux";
+
 // locale
 // constants
 import POINTS from "../../store/mock/points";
@@ -9,9 +10,9 @@ import POINTS from "../../store/mock/points";
 import { commonState } from "../../store/slices/commonSlice";
 
 const MapComponent = () => {
-    const { currentPoint } = useSelector(commonState);
+  const { currentPoint } = useSelector(commonState);
 
-    return (
+  return (
     <MapContainer
       center={currentPoint.position}
       zoom={13}
