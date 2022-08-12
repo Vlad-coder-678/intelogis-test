@@ -1,0 +1,41 @@
+{
+  "name": "intelogis-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "^1.8.4",
+    "antd": "^4.22.4",
+    "leaflet": "^1.8.0",
+    "react-leaflet": "^4.0.1",
+    "redux": "^4.2.0",
+    "redux-saga": "^1.1.3"
+  }
+}
