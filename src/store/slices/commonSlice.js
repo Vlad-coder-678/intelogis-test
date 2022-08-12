@@ -19,7 +19,7 @@ const commonSlice = createSlice({
       state.currentPoint = state.points[action.payload];
     },
     setCurrentRoute(state, action) {
-      state.currentPoint = state.routes[action.payload];
+      state.currentRoute = state.routes[action.payload];
     },
     createRoute(state, action) {
       state.routes.push(action.payload);
@@ -35,6 +35,7 @@ const commonSlice = createSlice({
 
 export const {
   setCurrentPoint,
+  setCurrentRoute,
   createRoute,
   changeRoute,
   removeRoute,
