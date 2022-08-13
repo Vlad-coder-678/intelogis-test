@@ -11,11 +11,11 @@ import CreateRouteComponent from "./CreateRouteComponent";
 
 const RouteTableComponent = () => {
   const { routes } = useSelector(commonState);
-
+  console.log("routes", routes);
   return (
     <div className="table">
-      {routes?.map((route, index) => (<RouteComponent key={`index ${index}`} route={route} />))}
-      <CreateRouteComponent />
+      {routes?.map((route) => (<RouteComponent key={route.startPoint} route={route} />))}
+      <CreateRouteComponent newRouteId={routes.length} />
     </div>
   );
 };

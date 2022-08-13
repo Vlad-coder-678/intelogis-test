@@ -1,38 +1,64 @@
 // vendor
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Tooltip } from "antd";
-import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Button, Tooltip } from "antd";
+import { CloseOutlined, EditOutlined, LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 
 // locale
 // store
-import { commonState, setCurrentRoute } from "../../../store/slices/commonSlice";
+import { commonState, removeRoute, setCurrentRoute } from "../../../store/slices/commonSlice";
 import STYLES from "../../../constants/styles";
+import CreateRouteComponent from "../CreateRouteComponent";
 
 const RouteComponent = ({ route }) => {
-  const { startPoint, endPoint } = route;
-  const { currentRoute: { routeId } } = useSelector(commonState);
-  const isCurrentRoute = routeId === route.routeId;
+  const { currentRoute } = useSelector(commonState);
+  const [isChangeComponent, setIsChangeComponent] = useState(false);
+
+  const { startPoint, endPoint, routeId } = route;
+  const isCurrentRoute = currentRoute.routeId === routeId;
+  const { tableText, tableActiveText } = STYLES.color;
 
   const dispatch = useDispatch();
 
-  const handleSetCurrentRoute = () => dispatch(setCurrentRoute(route.routeId));
+  const handleSetCurrentRoute = () => dispatch(setCurrentRoute(routeId));
+  const handleChangeRoute = () => setIsChangeComponent(!isChangeComponent);
+  const handleRemoveRoute = () => dispatch(removeRoute(routeId));
 
-  return (
-    <div className="route_container" onClick={handleSetCurrentRoute}>
-      <div className="route_point">
-        <LoginOutlined style={{ "color": isCurrentRoute ? STYLES.tableActiveTextColor : STYLES.tableTextColor, "transform": "scale(1.3)" }} />
-        <Tooltip title={startPoint.address}>
-          <div className={`route_address${isCurrentRoute ? " current_route" : ""}`}>{startPoint.address}</div>
-        </Tooltip>
+  return !isChangeComponent ? (
+    <div className="route_container">
+      <div className="points_container" onClick={handleSetCurrentRoute}>
+        <div className="point">
+          <LoginOutlined style={{ "color": isCurrentRoute ? tableActiveText : tableText, "transform": "scale(1.3)" }} />
+          <Tooltip title={startPoint.address}>
+            <div className={`point_address${isCurrentRoute ? " current_route" : ""}`}>{startPoint.address}</div>
+          </Tooltip>
+        </div>
+        <div className="point">
+          <LogoutOutlined style={{ "color": isCurrentRoute ? tableActiveText : tableText, "transform": "scale(1.3)" }} />
+          <Tooltip title={endPoint.address}>
+            <div className={`point_address${isCurrentRoute ? " current_route" : ""}`}>{endPoint.address}</div>
+          </Tooltip>
+        </div>
       </div>
-      <div className="route_point">
-        <LogoutOutlined style={{ "color": isCurrentRoute ? STYLES.tableActiveTextColor : STYLES.tableTextColor, "transform": "scale(1.3)" }} />
-        <Tooltip title={endPoint.address}>
-          <div className={`route_address${isCurrentRoute ? " current_route" : ""}`}>{endPoint.address}</div>
-        </Tooltip>
+      <div className="buttons_container">
+        <div className="button_container">
+          <Tooltip title="Изменить">
+            <Button className="table_button" type="primary" onClick={handleChangeRoute}>
+              <EditOutlined />
+            </Button>
+          </Tooltip>
+        </div>
+        <div className="button_container">
+          <Tooltip title="Удалить">
+            <Button className="table_button" type="primary" onClick={handleRemoveRoute}>
+              <CloseOutlined />
+            </Button>
+          </Tooltip>
+        </div>
       </div>
     </div>
+  ) : (
+    <CreateRouteComponent newRouteId={route.routeId} isChange setIsChange={setIsChangeComponent} />
   );
 };
 

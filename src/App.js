@@ -2,12 +2,13 @@
 import React from "react";
 
 // locale
+// hooks
+import useDrag from "./hooks/useDrag.js";
 // components
 import RouteTableComponent from "./components/RouteTableComponent/index.js";
 import MapComponent from "./components/MapComponent";
 // styles
 import "./App.css";
-import useDrag from "./hooks/useDrag.js";
 
 const App = () => {
   const {
@@ -19,10 +20,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <div
-        ref={tableContainerRef}
-        className="table_container"
-      >
+      <div className="table_container" ref={tableContainerRef}>
         <RouteTableComponent />
       </div>
       <div
@@ -31,10 +29,7 @@ const App = () => {
         onDragStart={handleDragStart}
         onDrag={handleDrag}
       />
-      <div
-        ref={mapContainerRef}
-        className="map_container"
-      >
+      <div className="map_container" ref={mapContainerRef}>
         <MapComponent />
       </div>
     </div>

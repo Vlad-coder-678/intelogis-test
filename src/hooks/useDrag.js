@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
  * @returns { leftElementRef, rightElementRef, handleDragStart, handleDrag }
  * 
  * leftElementRef - реферальная ссылка на элемент находящийся слева от ползунка\
- * rightElementRef - реферальная ссылка на элемент находящийся правый от ползунка\
+ * rightElementRef - реферальная ссылка на элемент находящийся справа от ползунка\
  * handleDragStart - событие начала перетаскивания ползунка\
  * handleDrag - событие перетаскивания ползунка
  */
