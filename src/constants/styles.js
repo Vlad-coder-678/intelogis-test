@@ -1,7 +1,7 @@
 const STYLES = {
   color: {
-    tableText: "#ff7a18",
-    tableActiveText: "#66ff00",
+    tableText: "#f5f5f5",
+    tableActiveText: "#00bfff",
   },
 };
 

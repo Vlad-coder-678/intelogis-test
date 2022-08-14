@@ -1,4 +1,4 @@
-const responseApi = {
+const mockApiResponse = {
     "routes": [
         {
             "geometry": {
@@ -667,4 +667,4 @@ const responseApi = {
     "uuid": "tLqi-my4jKmQjN5w_YEbIq6fWWvFtTRu3TK8-CI9HpAHv0S5ui1xkg=="
 };
 
-export default responseApi;
+export default mockApiResponse;

@@ -6,13 +6,13 @@ import { Button, Select, Tooltip } from 'antd';
 
 // locale
 // store
-import { changeRoute, commonState, createRoute } from "../../../store/slices/commonSlice";
+import { changeRoute, tableState, createRoute } from "../../../store/slices/tableSlice";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
 const CreateRouteComponent = ({ newRouteId, isChange, setIsChange }) => {
-  const { points } = useSelector(commonState);
+  const { points } = useSelector(tableState);
   const [fields, setFields] = useState({});
   const isDisabled = typeof fields?.startPoint?.address !== "string" || typeof fields?.endPoint?.address !== "string";
 

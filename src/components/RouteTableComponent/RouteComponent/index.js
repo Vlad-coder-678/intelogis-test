@@ -1,17 +1,20 @@
-// vendor
-import React, { useState } from "react";
+// vendor imports
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Tooltip } from "antd";
 import { CloseOutlined, EditOutlined, LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 
-// locale
-// store
-import { commonState, removeRoute, setCurrentRoute } from "../../../store/slices/commonSlice";
+// locale imports
+// constants
 import STYLES from "../../../constants/styles";
+// store
+import { tableState, removeRoute, setCurrentRoute } from "../../../store/slices/tableSlice";
+import { setCurrentMapCenter, setIsLoading } from "../../../store/slices/mapSlice";
+// components
 import CreateRouteComponent from "../CreateRouteComponent";
 
 const RouteComponent = ({ route }) => {
-  const { currentRoute } = useSelector(commonState);
+  const { currentRoute } = useSelector(tableState);
   const [isChangeComponent, setIsChangeComponent] = useState(false);
 
   const { startPoint, endPoint, routeId } = route;
@@ -20,7 +23,25 @@ const RouteComponent = ({ route }) => {
 
   const dispatch = useDispatch();
 
-  const handleSetCurrentRoute = () => dispatch(setCurrentRoute(routeId));
+  const getCurrentMapCenter = useCallback(() => {
+    return ({
+      position: [
+        (startPoint.position[0] + endPoint.position[0]) / 2,
+        (startPoint.position[1] + endPoint.position[1]) / 2,
+      ],
+    });
+  }, [endPoint.position, startPoint.position]);
+
+  const handleSetCurrentRoute = () => {
+    dispatch(setCurrentMapCenter(getCurrentMapCenter()));
+    dispatch(setCurrentRoute(routeId));
+    dispatch(setIsLoading({
+      startX: startPoint.position[0],
+      startY: startPoint.position[1],
+      endX: endPoint.position[0],
+      endY: endPoint.position[1],
+    }));
+  };
   const handleChangeRoute = () => setIsChangeComponent(!isChangeComponent);
   const handleRemoveRoute = () => dispatch(removeRoute(routeId));
 

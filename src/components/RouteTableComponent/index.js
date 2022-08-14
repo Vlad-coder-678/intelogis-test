@@ -4,14 +4,14 @@ import { useSelector } from "react-redux";
 
 // locale
 // store
-import { commonState } from "../../store/slices/commonSlice";
+import { tableState } from "../../store/slices/tableSlice";
 // components
 import RouteComponent from "./RouteComponent";
 import CreateRouteComponent from "./CreateRouteComponent";
 
 const RouteTableComponent = () => {
-  const { routes } = useSelector(commonState);
-  console.log("routes", routes);
+  const { routes } = useSelector(tableState);
+
   return (
     <div className="table">
       {routes?.map((route) => (<RouteComponent key={route.startPoint} route={route} />))}
