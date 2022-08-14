@@ -4,7 +4,7 @@ import createSagaMiddleware from "redux-saga";
 
 // locale
 // store
-import mySaga from "./sagas";
+import coordinatesSaga from "./sagas";
 import { mapReducer } from "./slices/mapSlice";
 import { tableReducer } from "./slices/tableSlice";
 
@@ -21,4 +21,4 @@ const store = configureStore({
 
 export default store;
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(coordinatesSaga);

@@ -2,17 +2,16 @@
 import React from "react";
 import { MapContainer, Marker, Polyline, Popup, TileLayer } from "react-leaflet";
 import { useSelector } from "react-redux";
-import { mapState } from "../../store/slices/mapSlice";
 
 // locale
 // store
 import { tableState } from "../../store/slices/tableSlice";
+import { mapState } from "../../store/slices/mapSlice";
 
 const MapComponent = () => {
   const { currentRoute } = useSelector(tableState);
   const { currentMapCenter, currentPolylineCoordinates } = useSelector(mapState);
   const { startPoint, endPoint } = currentRoute;
-  console.log("currentPolylineCoordinates", currentPolylineCoordinates);
 
   return (
     <MapContainer
@@ -26,13 +25,13 @@ const MapComponent = () => {
     />
     <Marker position={startPoint.position}>
       <Popup>
-        Точка № {startPoint.id + 1} <br />{startPoint.address}
+        {startPoint.name}<br />{startPoint.address}
       </Popup>
     </Marker>
     <Polyline pathOptions={{ color: "lime" }} positions={[currentPolylineCoordinates]} />
     <Marker position={endPoint.position}>
       <Popup>
-        Точка № {endPoint.id + 1} <br />{endPoint.address}
+        {endPoint.name}<br />{endPoint.address}
       </Popup>
     </Marker>
     </MapContainer>

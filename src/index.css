@@ -1,0 +1,7 @@
+/* vendor imports */
+@import "~antd/dist/antd.css";
+
+/* locale imports */
+@import "./App.css";
+@import "./components/RouteTableComponent/table.css";
+@import "./components/MapComponent/map.css";

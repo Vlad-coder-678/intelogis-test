@@ -1,3 +1,4 @@
+// для удобства извлечения данных
 const mapBoxSelector = (response) => {
   const {
     routes: [{

@@ -1,5 +1,7 @@
 // vendor
 import { createSlice } from "@reduxjs/toolkit";
+
+// locale imports
 // mock
 import POINTS from "../mock/points";
 import ROUTES from "../mock/routes";
@@ -23,10 +25,6 @@ const mapSlice = createSlice({
       state.currentPolylineCoordinates = action.payload;
       state.isLoading = false;
     },
-    setCurrentPolylineDefaultCoordinates(state) {
-      state.currentPolylineCoordinates = state.currentRoute.defaultPolylineCoordinates;
-      state.isLoading = false;
-    },
   }
 });
 
@@ -35,7 +33,6 @@ export const {
   setCurrentRoute,
   setCurrentMapCenter,
   setCurrentPolylineCoordinates,
-  setCurrentPolylineDefaultCoordinates,
 } = mapSlice.actions;
 
 export const mapState = state => state.map;

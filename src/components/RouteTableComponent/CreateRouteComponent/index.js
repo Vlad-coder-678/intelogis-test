@@ -1,13 +1,13 @@
-// vendore
+// vendore imports
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // antd
-import { Button, Select, Tooltip } from 'antd';
+import { Button, Select, Tooltip } from "antd";
+import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 
-// locale
+// locale imports
 // store
 import { changeRoute, tableState, createRoute } from "../../../store/slices/tableSlice";
-import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -36,24 +36,24 @@ const CreateRouteComponent = ({ newRouteId, isChange, setIsChange }) => {
         <Select
           className="point point_select"
           bordered={false}
-          value={fields?.startPoint?.address ?? ""}
+          value={fields?.startPoint?.name ?? ""}
           onChange={(value) => handleSetFields("startPoint", value)}
         >
           {points.map((point) => (
             <Option value={point.id}>
-              {point.address}
+              {point.name}
             </Option>
           ))}
         </Select>
         <Select
           bordered={false}
           className="point point_select"
-          value={fields?.endPoint?.address ?? ""}
+          value={fields?.endPoint?.name ?? ""}
           onChange={(value) => handleSetFields("endPoint", value)}
         >
           {points.map((point) => (
             <Option value={point.id}>
-              {point.address}
+              {point.name}
             </Option>
           ))}
         </Select>

@@ -1,5 +1,5 @@
 // vendor imports
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Tooltip } from "antd";
 import { CloseOutlined, EditOutlined, LoginOutlined, LogoutOutlined } from "@ant-design/icons";
@@ -45,19 +45,31 @@ const RouteComponent = ({ route }) => {
   const handleChangeRoute = () => setIsChangeComponent(!isChangeComponent);
   const handleRemoveRoute = () => dispatch(removeRoute(routeId));
 
+  useEffect(() => {
+    if (isCurrentRoute) {
+      dispatch(setIsLoading({
+        startX: startPoint.position[0],
+        startY: startPoint.position[1],
+        endX: endPoint.position[0],
+        endY: endPoint.position[1],
+      }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return !isChangeComponent ? (
     <div className="route_container">
       <div className="points_container" onClick={handleSetCurrentRoute}>
         <div className="point">
           <LoginOutlined style={{ "color": isCurrentRoute ? tableActiveText : tableText, "transform": "scale(1.3)" }} />
           <Tooltip title={startPoint.address}>
-            <div className={`point_address${isCurrentRoute ? " current_route" : ""}`}>{startPoint.address}</div>
+            <div className={`point_address${isCurrentRoute ? " current_route" : ""}`}>{startPoint.name}</div>
           </Tooltip>
         </div>
         <div className="point">
           <LogoutOutlined style={{ "color": isCurrentRoute ? tableActiveText : tableText, "transform": "scale(1.3)" }} />
           <Tooltip title={endPoint.address}>
-            <div className={`point_address${isCurrentRoute ? " current_route" : ""}`}>{endPoint.address}</div>
+            <div className={`point_address${isCurrentRoute ? " current_route" : ""}`}>{endPoint.name}</div>
           </Tooltip>
         </div>
       </div>
