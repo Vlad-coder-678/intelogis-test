@@ -2,9 +2,12 @@
   "name": "intelogis-test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Vlad-coder-678.github.io/intelogis-test",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -33,6 +36,7 @@
   "devDependencies": {
     "@reduxjs/toolkit": "^1.8.4",
     "antd": "^4.22.4",
+    "gh-pages": "^4.0.0",
     "leaflet": "^1.8.0",
     "react-leaflet": "^4.0.1",
     "redux": "^4.2.0",
